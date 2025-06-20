@@ -11,16 +11,17 @@ Añadir pruebas para otro endpoint POST /users que cree un usuario con validaci�
 
 ##  Python
 
+```
 curl -X POST http://localhost:8000/stats \
   -H "Content-Type: application/json" \
   -d '{"numbers": [1, 2, 3]}'
-
+```
 
 Crear tests con pytest para:
--- Diferentes listas de números 
--- Casos borde: lista vacía, números negativos, decimales.
--- Añadir fixtures si es necesario.
--- Testear respuesta a entrada inválida (ejemplo: numbers como string o nulo).
+- Diferentes listas de números 
+- Casos borde: lista vacía, números negativos, decimales.
+- Añadir fixtures si es necesario.
+- Testear respuesta a entrada inválida (ejemplo: numbers como string o nulo).
 
 ##  E2E
 
