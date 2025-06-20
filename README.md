@@ -4,10 +4,10 @@
 Escribir pruebas unitarias y de integración con Jest para:
 Validar el endpoint GET /users/:id con:
 
-Usuario existente
-Usuario no encontrado (404)
-Configurar y usar MongoMemoryServer para las pruebas (evitar DB real).
-Añadir pruebas para otro endpoint POST /users que cree un usuario con validación.
+- Usuario existente
+- Usuario no encontrado (404)
+- Configurar y usar MongoMemoryServer para las pruebas (evitar DB real).
+- Añadir pruebas para otro endpoint POST /users que cree un usuario con validación.
 
 ##  Python
 
