@@ -1,0 +1,8 @@
+URL del portal: https://pas.personicore.com
+
+Usuario de prueba: tester@example.com
+
+Contraseña: Test1234!
+
+Requisitos: Usar Cypress o Playwright (u otra herramienta que elijas)
+
