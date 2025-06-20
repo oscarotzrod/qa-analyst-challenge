@@ -1,9 +1,5 @@
-# APP
-## Pasos para iniciar un proyecto de nodeJS
-
-1. Node.js — Pruebas avanzadas de API REST + integración 
-
-Tareas:
+# QA Challenge
+## Node.js — Pruebas de API REST + integración 
 
 Escribir pruebas unitarias y de integración con Jest para:
 Validar el endpoint GET /users/:id con:
@@ -13,7 +9,7 @@ Usuario no encontrado (404)
 Configurar y usar MongoMemoryServer para las pruebas (evitar DB real).
 Añadir pruebas para otro endpoint POST /users que cree un usuario con validación.
 
-2. Python
+##  Python
 
 curl -X POST http://localhost:8000/stats \
   -H "Content-Type: application/json" \
@@ -26,7 +22,7 @@ Crear tests con pytest para:
 -- Añadir fixtures si es necesario.
 -- Testear respuesta a entrada inválida (ejemplo: numbers como string o nulo).
 
-3. E2E
+##  E2E
 
 Hacer un proceso de E2E para la acción del login en el siguiente portal
 
