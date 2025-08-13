@@ -1,92 +1,56 @@
 import { Router } from 'express';
-import { User } from '../models/user.js';
+import { v4 as uuidv4 } from 'uuid';
+import { usersMock } from '../mockData.js';
 
 export const usersRouter = Router();
 
-// USER ROUTES
-// localhost:3000/api/users
-usersRouter.get('/', async (req, res) => {
-  try {
-    const users = await User.find();
+let users = [...usersMock];
 
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+// GET /api/users - obtener todos los usuarios
+usersRouter.get('/', (req, res) => {
+  res.status(200).json(users);
 });
 
-usersRouter.get('/:id', async (request, response, next) => {
-  try {
-    const id = request.params.id;
-    const userFound = await User.find({ _id: id });
+// GET /api/users/:id - obtener usuario por id
+usersRouter.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const userFound = users.find(u => u._id === id);
 
-    if (!userFound) {
-      return response.status(404).end();
-    }
-
-    response.status(200).json(userFound);
-  } catch (error) {
-    next(error); // cuando el next recibe un param cambia la estructura del middleware
+  if (!userFound) {
+    return res.status(404).end();
   }
+
+  res.status(200).json(userFound);
 });
 
-// localhost:3000/api/users
-usersRouter.post('/', async (req, res) => {
-  try {
-    if (!req.body.name) {
-      return response.status(400).json({
-        error: 'name missing',
-      });
-    }
-    const newUser = {
-      name: req.body.name,
-      email: req.body.email,
-    };
-    const user = new User(newUser);
-    const savedUser = await user.save();
-
-    // res.status(201).json(savedUser);
-    res.status(201).end();
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+// POST /api/users - crear usuario
+usersRouter.post('/', (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).json({ error: 'name missing' });
   }
+
+  const newUser = {
+    _id: uuidv4(),
+    name: req.body.name,
+    email: req.body.email,
+    rfc: req.body.rfc,
+  };
+
+  users.push(newUser);
+  console.log(newUser)
+  res.status(201).json(newUser);
 });
 
-// localhost:3000/api/users/:id
-usersRouter.patch('/:id', async (req, res) => {
+// DELETE /api/users/:id - eliminar usuario
+usersRouter.delete('/:id', (req, res) => {
   const userId = req.params.id;
-  const userFields = req.body;
-  try {
-    // buscar el usuario por el id y si lo encuentra lo va a actualizar con los campos que le pasemos
-    const updatedUser = await User.findByIdAndUpdate(userId, userFields, {
-      new: true,
-    });
+  const index = users.findIndex(u => u._id === userId);
 
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    // res.status(200).json(updatedUser);
-    // res.status(200).json({ message: 'User Updated correctly'});
-    res.status(200).end();
-  } catch (error) {
-    next(error);
+  if (index === -1) {
+    return res.status(404).json({ message: 'User not found' });
   }
-});
 
-// localhost:3000/api/users/:id
-usersRouter.delete('/:id', async (req, res) => {
-  const userId = req.params.id;
-  try {
-    const deletedUser = await User.findByIdAndRemove(userId);
+  users.splice(index, 1);
 
-    if (!deletedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    // res.status(200).json(deletedUser);
-    res.status(200).end();
-  } catch (error) {
-    next(error);
-  }
+  res.status(200).end();
 });
