@@ -4,24 +4,13 @@
 Escribir pruebas unitarias y de integración con Jest para:
 Validar el endpoint GET /users/:id con:
 
+- Simule el funcionamiento del API (evitar DB real) (Sugerencia: Puede configurar y usar MongoMemoryServer para las pruebas).
 - Usuario existente
 - Usuario no encontrado (404)
-- Configurar y usar MongoMemoryServer para las pruebas (evitar DB real).
 - Añadir pruebas para otro endpoint POST /users que cree un usuario con validación.
 
-##  Python
-
-```
-curl -X POST http://localhost:8000/stats \
-  -H "Content-Type: application/json" \
-  -d '{"numbers": [1, 2, 3]}'
-```
-
-Crear tests con pytest para:
-- Diferentes listas de números 
-- Casos borde: lista vacía, números negativos, decimales.
-- Añadir fixtures si es necesario.
-- Testear respuesta a entrada inválida (ejemplo: numbers como string o nulo).
+##  CI/CD
+En el archivo requirements.txt, escriba que pasos ejecutaría para implementar un proceso de CI/CD y que consideraciones a tener
 
 ##  E2E
 
