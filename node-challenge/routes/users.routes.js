@@ -4,7 +4,12 @@ import { usersMock } from '../mockData.js';
 
 export const usersRouter = Router();
 
-let users = [...usersMock];
+export const getUserById = (id) => {
+  const userFound = users.find(u => u._id === id);
+  return userFound || null;
+};
+
+export let users = [...usersMock];
 
 // GET /api/users - obtener todos los usuarios
 usersRouter.get('/', (req, res) => {

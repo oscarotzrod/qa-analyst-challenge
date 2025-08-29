@@ -1,0 +1,25 @@
+# CI/CD Pipeline - Proceso de implementación
+
+# 1. Instalar las dependencias necesarias para el proyecto.
+#    - `npm install` para instalar las dependencias (Playwright, Jest, etc.).
+#    - Usar package-lock.json para la gestión de versiones de dependencias.
+
+# 2. Ejecutar pruebas unitarias.
+#    - `npm test` para ejecutar pruebas unitarias.
+#    - Si las pruebas unitarias fallan, se debe detener el pipeline.
+
+# 3. Ejecutar pruebas E2E.
+#    - `npx playwright test` para ejecutar pruebas end-to-end.
+#    - Preparar ejecución headless para múltiples navegadores (Chromium, Firefox y WebKit).
+
+# 4. Limpieza y formateo de código.
+#    - `eslint` para limpiar o estilizar el código.
+#    - `prettier` para el formateo del código.
+
+# 5. Deploy (stage/producción)
+#    - Deploy automatizado al servidor en stage si todas las pruebas se ejecutaron con éxito.
+#    - Deploy a producción solo si se aprueba la revisión en el área de QA.
+
+# Recomendaciones:
+# - Uso de variables de entorno para credenciales de acceso.
+# - Monitoreo de fallos y notificaciones (Jira, Trello, Slack o Gmail).
